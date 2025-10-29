@@ -7,8 +7,8 @@
 ---
 
 <p align="center">
-  <b>🟢 <a href="#aula01-introducao-ao-nodejs--javascript-basico">aula01 - Introdução ao Node.js & JavaScript Básico</a></b> &nbsp; | &nbsp;
-  <b>🟢 <a href="#aula02-modulos-no-nodejs-commonjs">aula02 - Módulos no Node.js (CommonJS)</a></b> &nbsp; | &nbsp;
+  <b>🟢 <a href="#aula01-introducao-ao-nodejs--javascript-basico">aula01 - Introdução ao Node.js & JavaScript Básico</a></b><br>
+  <b>🟢 <a href="#aula02-modulos-no-nodejs-commonjs">aula02 - Módulos no Node.js (CommonJS)</a></b><br>
   <b>🟢 <a href="#aula03-servidor-http-nativo-vs-express-e-conexao-com-mysql-sequelize">aula03 - Servidor HTTP nativo vs Express & MySQL (Sequelize)</a></b>
 </p>
 
