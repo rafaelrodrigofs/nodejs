@@ -17,13 +17,15 @@
 - 🚦 Comparar servidor HTTP nativo do Node.js com Express.
 - 🗂️ Servir páginas estáticas com <code>res.sendFile</code>.
 - 🛢️ Testar conexão com MySQL usando Sequelize.
+- 🧾 Executar scripts SQL básicos (CRUD) para a tabela <code>usuario</code>.
 
 ---
 
 ## 📝 Pré-requisitos
 
 - <strong>Node.js</strong> instalado
-- <strong>MySQL</strong> em execução e credenciais válidas (para parte 3)
+- <strong>MySQL</strong> em execução e credenciais válidas (para parte 3 e SQL)
+- (Opcional) Cliente MySQL no terminal ou acesso ao phpMyAdmin (Wamp)
 
 ---
 
@@ -101,8 +103,6 @@ node test.js
 ```
 
 **Como configurar:**
-- Certifique-se de que o banco <code>antigo</code> exista.
-- Ajuste o trecho conforme necessário:
 ```js
 const sequelize = new Sequelize('NOME_BANCO', 'USUARIO', 'SENHA', {
   host: 'localhost',
@@ -116,12 +116,60 @@ const sequelize = new Sequelize('NOME_BANCO', 'USUARIO', 'SENHA', {
 
 ---
 
+## 4️⃣ Parte 4 — Scripts SQL (CRUD) na pasta <code>sql/</code>
+
+Arquivos:
+- <code>01_criarTabela.sql</code> — cria a tabela <code>usuario</code>
+- <code>02_inserirDados.sql</code> — insere registros de exemplo
+- <code>03_buscarDados.sql</code> — consultas (SELECT) com filtros comuns
+- <code>04_deletarDados.sql</code> — exemplos de exclusão (DELETE)
+- <code>05_atualizarDados.sql</code> — exemplos de atualização (UPDATE)
+
+Tabela esperada:
+```sql
+CREATE TABLE usuario(
+    id INT PRIMARY KEY AUTO_INCREMENT,
+    nome VARCHAR(255) NOT NULL,
+    email VARCHAR(255) NOT NULL UNIQUE,
+    idade INT NOT NULL
+);
+```
+
+### Como executar os scripts
+
+- Via phpMyAdmin (Wamp):
+  - Abra `http://localhost/phpmyadmin`, selecione o banco, vá em “SQL”, cole o conteúdo do arquivo e execute.
+
+- Via terminal (cliente MySQL):
+  ```bash
+  # Acesse o MySQL
+  mysql -u root -p
+
+  # Selecione o banco (ajuste o nome)
+  USE antigo;
+
+  # Rode os arquivos (ajuste o caminho no Windows, use barras invertidas com aspas)
+  SOURCE "C:\\wamp64\\www\\nodejs2\\aula03\\sql\\01_criarTabela.sql";
+  SOURCE "C:\\wamp64\\www\\nodejs2\\aula03\\sql\\02_inserirDados.sql";
+  SOURCE "C:\\wamp64\\www\\nodejs2\\aula03\\sql\\03_buscarDados.sql";
+  SOURCE "C:\\wamp64\\www\\nodejs2\\aula03\\sql\\04_deletarDados.sql";
+  SOURCE "C:\\wamp64\\www\\nodejs2\\aula03\\sql\\05_atualizarDados.sql";
+  ```
+
+Dicas:
+- Sempre valide a base de dados selecionada com `SELECT DATABASE();`.
+- Antes de `DELETE`/`UPDATE`, rode um `SELECT` com o mesmo `WHERE` para conferir os registros afetados.
+- O `email` é `UNIQUE`: evite duplicatas ao inserir/atualizar.
+
+---
+
 ## 💡 Dicas e observações
 
 - ⚠️ Em <code>app.js</code>, o servidor escuta <code>8080</code> mas o log mostra <code>8081</code> — padronize!
 - 🧰 Em <code>appExpress.js</code>, <code>req.body</code> só funciona com <code>express.json()</code> ou <code>express.urlencoded()</code>.
 - 📂 <code>res.sendFile()</code> precisa de caminho absoluto — use <code>__dirname + '/html/...'</code>.
 - ℹ️ Para servir arquivos estáticos (css/js), utilize <code>app.use(express.static('public'))</code>.
+- 🛡️ Em SQL, use `WHERE` em `UPDATE`/`DELETE` para não afetar todas as linhas por engano.
 
 ---
 
@@ -135,10 +183,10 @@ const sequelize = new Sequelize('NOME_BANCO', 'USUARIO', 'SENHA', {
 3. ✨ Crie a rota <code>GET /saudacao/:nome</code> que responde <code>Olá, &lt;nome&gt;!</code>.
 4. 🗃️ No Sequelize, crie um modelo simples (<code>Usuario</code>) e sincronize a tabela.
 5. 🎨 Sirva arquivos estáticos (css/js) usando <code>express.static('public')</code> (opcional).
+6. 🧪 Execute os scripts SQL na ordem (01 → 05) e verifique os resultados com <code>SELECT</code>.
 
 ---
 
 <p align="center">
   <em>Bons estudos e mãos ao código! 🚀</em>
 </p>
-
