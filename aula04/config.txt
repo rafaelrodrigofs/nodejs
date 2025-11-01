@@ -1,0 +1,19 @@
+KVM 2
+Núcleo da CPU 2
+Memória 8 GB
+Espaço em disco 100 GB
+Ubuntu 24.04 LTS
+---------
+#Comandos
+
+--  Criando um usuário
+adduser rafael
+
+--  Adicionando o usuário ao grupo sudo
+usermod -aG sudo rafael
+
+--  Verificando o status do firewall
+sudo ufw status
+
+--  Permitindo o SSH
+sudo ufw allow OpenSSH
